@@ -1,0 +1,1297 @@
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Social Share</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    </head>
+    
+    <body>
+        
+        <script>
+        /* 
+         * To change this license header, choose License Headers in Project Properties.
+         * To change this template file, choose Tools | Templates
+         * and open the template in the editor.
+         */
+        
+   /*   
+         var socialShare = {"Buttons":[
+                 {
+                    "Tamano":"countRight",
+                     
+                    "Alineacion":"Matrix22",
+                     
+                    "Separacion":"0px",
+
+                    "SeparacionX":"0px",
+
+                    "SeparacionY":"0px",
+                     
+                    "Servicios":{
+                                    "Facebook":"Activado",
+                                    "Twitter":"Activado",
+                                    "Pinterest":"Desactivado",
+                                    "Linkedin":"Desactivado",
+                                    "GoogleMas":"Activado",
+                                    "Email":"Desactivado"},
+                                
+                    "Posicion":{
+                                    "Facebook":"0",
+                                    "Twitter":"1",
+                                    "Pinterest":"2",
+                                    "Linkedin":"3",
+                                    "GoogleMas":"4",
+                                    "Email":"5"
+                                },
+                                
+                    "Sprite":{
+                                "href":"http://localhost/workspace/redsocial/EditorOnline01/public_html/img/sprite02.jpg",
+                                "FacebookPX":"-5px",
+                                "FacebookPY":"-5px",
+                                "TwitterPX":"-58px",
+                                "TwitterPY":"-5px",
+                                "PinterestPX":"-111px",
+                                "PinterestPY":"-5px",
+                                "LinkedinPX":"-164px",
+                                "LinkedinPY":"-5px",
+                                "GmasPX":"-217px",
+                                "GmasPY":"-5px",
+                                "EmailPX":"-270px",
+                                "EmailPY":"-5px",
+                                "EscalaW":"48px",
+                                "EscalaH":"48px"
+                             },
+                    "Personal":{
+                                "showPopUp":"Desactivado"
+                               }
+                }]};
+       */
+        
+var socialShare = {"Buttons":[{"Tamano":"countPersonal","Alineacion":"Vertical","Separacion":"6px","SeparacionX":"0px","SeparacionY":"0px","Servicios":{"Facebook":"Activado","Twitter":"Activado","Pinterest":"Desactivado","Linkedin":"Desactivado","GoogleMas":"Activado","Email":"Desactivado"},"Posicion":{"Facebook":"0","Twitter":"1","Pinterest":"2","Linkedin":"3","GoogleMas":"4","Email":"5"},"Sprite":{"href":"img/sprite02.jpg","FacebookPX":"-5px","FacebookPY":"-5px","TwitterPX":"-58px","TwitterPY":"-5px","PinterestPX":"-111px","PinterestPY":"-5px","LinkedinPX":"-164px","LinkedinPY":"-5px","GmasPX":"-217px","GmasPY":"-5px","EmailPX":"-270px","EmailPY":"-5px","EscalaW":"48px","EscalaH":"48px"},"Personal":{"showPopUp":"Activado"}}]}; 
+        </script>
+        
+
+        
+       <div  id="socialShare"></div>
+       
+<!--                        JS Social Share                                  -->        
+    
+    
+   <!-- <br><img src="http://i2.esmas.com/2014/06/30/666377/silvia-navarro-jorge-salinas-120x90.jpg" />-->
+    
+   <script>
+   /* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+//------------------------- var communities ------------------------------------
+var communities = {
+
+    //----------------------------- getUrlVars -------------------------------------
+    getUrlVars: function () {
+        var vars = [],
+            hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i];
+            vars.push(hash);
+        }
+        return vars;
+    },
+    //----------------------------- getSeparation ----------------------------------
+    getSeparation: function () {
+        for (var i = 0; i < 6; i++) {
+        	if(document.getElementById(i)){
+
+
+	            var elem = document.getElementById(i);
+	            if (elem.id === elem.id) {
+	                elem.style.padding = socialShare.Buttons[0].Separacion;
+	                elem.style.paddingLeft = socialShare.Buttons[0].SeparacionX;
+	                elem.style.paddingTop = socialShare.Buttons[0].SeparacionY;
+	            }
+	        }
+        }
+    },
+
+    //------------------------------ getpopUpF -------------------------------------          
+    getpopUpF: function () {
+        var url = 'https://www.facebook.com/sharer/sharer.php?u=' + getUrlVars() + '';
+        window.open(url, 'popUpWindow', 'height=400,width=600,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+    },
+
+    //------------------------------ getpopUpT -------------------------------------                
+    getpopUpT: function () {
+        var url = 'https://twitter.com/share?url=' + getUrlVars() + '';
+        window.open(url, 'popUpWindow', 'height=400,width=600,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+    },
+
+    //------------------------------ getpopUpP -------------------------------------                
+    getpopUpP: function () {
+        var url = '//es.pinterest.com/pin/create/link/?url=' + getUrlVars() + '';
+        window.open(url, 'popUpWindow', 'height=400,width=600,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+    },
+
+    //------------------------------ getpopUpL -------------------------------------                
+    getpopUpL: function () {
+        var url = 'http://www.linkedin.com/shareArticle?mini=true&url=' + getUrlVars() + '';
+        window.open(url, 'popUpWindow', 'height=400,width=600,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+    },
+
+    //------------------------------ getpopUpG -------------------------------------                
+    getpopUpG: function () {
+        var url = 'https://plus.google.com/share?url=' + getUrlVars() + '';
+        window.open(url, 'popUpWindow', 'height=400,width=600,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+    },
+
+    insertLinkedin: function   () {
+        var li = document.createElement("li");
+        li.setAttribute("id", '3');
+
+
+        if (socialShare.Buttons[0].Tamano === "countRight") {
+            li.innerHTML = '<script type="IN/Share" data-url="' + this.getUrlVars() + '" data-counter="right" data-showzero="true"> <\/script>';
+        } else if (socialShare.Buttons[0].Tamano === "countTop") {
+            // //li.setAttribute("style",' position:relative; top:30px;');
+             li.innerHTML = '<script type="IN/Share" data-url="' + this.getUrlVars() + '" data-counter="top"><\/script>';
+        } else if (socialShare.Buttons[0].Tamano === "countNone") {
+            li.innerHTML = '<script type="IN/Share" data-url="' + this.getUrlVars() + '" data-counter="none"><\/script>';
+        }
+        //--------------   Linkedin countPersonal --------------------------        
+        else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="http://www.linkedin.com/shareArticle?mini=true&url=' + this.getUrlVars() + '" target="_blank" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -164px -5px; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpL();" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -164px -5px; cursor:pointer;"></a>';
+            }
+        }
+        //------------------ Linkedin countTipoCanal5 ----------------------        
+        else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="http://www.linkedin.com/shareArticle?mini=true&url=' + communities.getUrlVars() + '" target="_blank" style="width: ' + socialShare.Buttons[0].Sprite.EscalaW + '; height: ' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.LinkedinPX + ' ' + socialShare.Buttons[0].Sprite.LinkedinPY + '; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpL();" style="width: ' + socialShare.Buttons[0].Sprite.EscalaW + '; height: ' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.LinkedinPX + ' ' + socialShare.Buttons[0].Sprite.LinkedinPY + '; cursor:pointer;"></a>';
+            }
+        }
+        //----------------------- Linkedin AlineaciÃ³n Horizontal -----------------------
+        if (socialShare.Buttons[0].Alineacion === "Horizontal") {
+            //                  li.setAttribute("style",' float:left; ');
+            //elem.style.float = "left"; 
+            if (socialShare.Buttons[0].Servicios.Linkedin === "Activado") {
+                li.setAttribute("style", 'float: left; display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //------------------------- Linkedin AlineaciÃ³n vertical -----------------------                        
+        else if (socialShare.Buttons[0].Alineacion === "Vertical") {
+
+            if (socialShare.Buttons[0].Servicios.Linkedin === "Activado") {
+
+                if (socialShare.Buttons[0].Tamano === "countRight") {
+                    li.setAttribute("style", ' float:none; position:relative;');
+                } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                    li.setAttribute("style", ' float:none; position:relative;');
+                } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                    li.setAttribute("style", ' float:none; position:relative; top:30px;');
+                } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                    li.setAttribute("style", ' float:none; display:flex; position:relative; padding:' + socialShare.Buttons[0].Separacion + ';');
+                } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                    li.setAttribute("style", ' float:none; display:flex; position:relative; padding:' + socialShare.Buttons[0].Separacion + ';');
+                }
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //---------------------------- Linkedin  AlineaciÃ³n  Matrix 2X2   --------------              
+        else if (socialShare.Buttons[0].Alineacion === "Matrix22") {
+            if (socialShare.Buttons[0].Servicios.Linkedin === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Linkedin === "0" || socialShare.Buttons[0].Posicion.Linkedin === "2" || socialShare.Buttons[0].Posicion.Linkedin === "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + '; ');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + '; ');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Linkedin !== "0" && socialShare.Buttons[0].Posicion.Linkedin !== "2" && socialShare.Buttons[0].Posicion.Linkedin !== "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + '; ');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //--------------------------  Linkedin  AlineaciÃ³n  Matrix 2X3   ---------------                    
+        else if (socialShare.Buttons[0].Alineacion === "Matrix23") {
+            if (socialShare.Buttons[0].Servicios.Linkedin === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Linkedin === "2") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Linkedin !== "2") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; position:relative; top:40px; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //--------------------------  Linkedin  AlineaciÃ³n  Matrix 3X2   ------------------------                
+        else if (socialShare.Buttons[0].Alineacion === "Matrix32") {
+            if (socialShare.Buttons[0].Servicios.Linkedin === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Linkedin === "0" || socialShare.Buttons[0].Posicion.Linkedin === "2" || socialShare.Buttons[0].Posicion.Linkedin === "4" || socialShare.Buttons[0].Posicion.Linkedin === "5") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Linkedin === "1" && socialShare.Buttons[0].Posicion.Linkedin === "3") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //------------------------------------------------------------------------------  
+
+        window.addEventListener("load", communities.getSeparation(), true);
+        var ul = document.getElementById("socialShare");
+        ul.setAttribute("style", 'list-style: none; ');
+        //var element = document.getElementById("socialShare");
+        ul.appendChild(li);
+
+    },
+
+    loadJsLinked: function () {
+        window.___gcfg = {
+            lang: 'es_ES'
+        };
+        // window.___gcfg = {lang: 'en_US'};
+        (function() {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = '//platform.linkedin.com/in.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })();
+    },
+
+    //---------------------------- Facebook() --------------------------------------
+    insertFacebook: function () {
+
+        var li = document.createElement("li");
+        li.setAttribute("id", '0');
+        //-------------------------- Facebook countRight -----------------------       
+        if (socialShare.Buttons[0].Tamano === "countRight") {
+            li.innerHTML = '<div id="fb-root"></div>';
+            li.innerHTML = '<div class="fb-share-button" data-href="https://www.facebook.com/sharer/sharer.php?u=' + communities.getUrlVars() + '" data-type="button_count"></div>';
+        }
+        //-------------------------- Facebook countTop -------------------------                
+        else if (socialShare.Buttons[0].Tamano === "countTop") {
+            li.innerHTML = '<div id="fb-root"></div>';
+            li.innerHTML = '<div class="fb-share-button" data-href="https://www.facebook.com/sharer/sharer.php?u=' + communities.getUrlVars() + '" data-type="box_count"></div>';
+        }
+        //-------------------------- Facebook countNone ------------------------                
+        else if (socialShare.Buttons[0].Tamano === "countNone") {
+            li.innerHTML = '<div id="fb-root"></div>';
+            li.innerHTML = '<div class="fb-share-button" data-href="https://www.facebook.com/sharer/sharer.php?u=' + communities.getUrlVars() + '" data-type="button"></div>';
+        }
+        //-------------------------- Facebook countPersonal --------------------                
+        else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="https://www.facebook.com/sharer/sharer.php?u=' + communities.getUrlVars() + '" target="_blank" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -5px -5px; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpF();" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -5px -5px; cursor:pointer;"></a>';
+            }
+        }
+        //-------------------------- Facebook tipoCanal5 -----------------------               
+        else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="https://www.facebook.com/sharer/sharer.php?u=' + communities.getUrlVars() + '" target="_blank" style="width: ' + socialShare.Buttons[0].Sprite.EscalaW + '; height: ' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.FacebookPX + ' ' + socialShare.Buttons[0].Sprite.FacebookPY + '; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpF();" style="width: ' + socialShare.Buttons[0].Sprite.EscalaW + '; height: ' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.FacebookPX + ' ' + socialShare.Buttons[0].Sprite.FacebookPY + '; cursor:pointer;"></a>';
+            }
+        }
+
+        //------------------- Facebook AlineaciÃ³n  Horizontal ------------------
+        if (socialShare.Buttons[0].Alineacion === "Horizontal") {
+            if (socialShare.Buttons[0].Servicios.Facebook === "Activado") {
+                li.setAttribute("style", 'float: left; display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //-------------------- Facebook AlineaciÃ³n  Vertical  ------------------                    
+        else if (socialShare.Buttons[0].Alineacion === "Vertical") {
+            if (socialShare.Buttons[0].Servicios.Facebook === "Activado") {
+                li.setAttribute("style", ' float:none; display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //--------------------- Facebook AlineaciÃ³n  Matrix 2X2   --------------            
+        else if (socialShare.Buttons[0].Alineacion === "Matrix22") {
+            if (socialShare.Buttons[0].Servicios.Facebook === "Activado") {
+
+                if (socialShare.Buttons[0].Posicion.Facebook === "0" || socialShare.Buttons[0].Posicion.Facebook === "2" || socialShare.Buttons[0].Posicion.Facebook === "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Facebook !== "0" && socialShare.Buttons[0].Posicion.Facebook !== "2" && socialShare.Buttons[0].Posicion.Facebook !== "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //------------------------ Facebook AlineaciÃ³n  Matrix 2X3   -----------               
+        else if (socialShare.Buttons[0].Alineacion === "Matrix23") {
+            if (socialShare.Buttons[0].Servicios.Facebook === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Facebook !== "3") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Facebook === "3") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //------------------------ Facebook AlineaciÃ³n  Matrix 3X2   -----------  
+        else if (socialShare.Buttons[0].Alineacion === "Matrix32") {
+            if (socialShare.Buttons[0].Servicios.Facebook === "Activado") {
+
+                if (socialShare.Buttons[0].Posicion.Facebook === "0" || socialShare.Buttons[0].Posicion.Facebook === "2" || socialShare.Buttons[0].Posicion.Facebook === "4" || socialShare.Buttons[0].Posicion.Facebook === "5") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Facebook === "1" && socialShare.Buttons[0].Posicion.Facebook === "3") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //----------------------------------------------------------------------
+
+        // window.addEventListener("load", communities.getSeparation(), true);
+        var ul = document.getElementById("socialShare");
+        ul.setAttribute("style", 'list-style: none;');
+        // //var element = document.getElementById("socialShare");
+        ul.appendChild(li);
+
+    },
+    //--------------------------- FacebookLoad -------------------------------------                    
+    FacebookLoad: function () {
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&appId=121182351390234&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    },
+    //---------------------------- Twitter() ---------------------------------------
+    insertTwitter: function () {
+        var li = document.createElement("li");
+        li.setAttribute("id", '1');
+
+        if (socialShare.Buttons[0].Tamano === "countRight") {
+            li.innerHTML = '<a href="https://twitter.com/share" class="twitter-share-button"  data-url="' + communities.getUrlVars() + '" data-via="your_screen_name" data-lang="en"  data-count="horizontal" data-size="small" >Tweet</a>';
+        } else if (socialShare.Buttons[0].Tamano === "countTop") {
+            li.innerHTML = '<a href="https://twitter.com/share" class="twitter-share-button"  data-url="' + communities.getUrlVars() + '" data-via="your_screen_name" data-lang="en"  data-count="vertical" data-size="small">Tweet</a>';
+        } else if (socialShare.Buttons[0].Tamano === "countNone") {
+            li.innerHTML = '<a href="https://twitter.com/share" class="twitter-share-button"  data-url="' + communities.getUrlVars() + '" data-via="your_screen_name" data-lang="en"  data-count="none" data-size="small">Tweet</a>';
+        } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="https://twitter.com/share?url=' + communities.getUrlVars() + '" target="_blank" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -58px -5px; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpT();" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -58px -5px; cursor:pointer;"></a>';
+            }
+        } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="https://twitter.com/share?url=' + communities.getUrlVars() + '" target="_blank" style=" width:' + socialShare.Buttons[0].Sprite.EscalaW + '; height:' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.TwitterPX + ' ' + socialShare.Buttons[0].Sprite.TwitterPY + '; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpT();" style=" width:' + socialShare.Buttons[0].Sprite.EscalaW + '; height:' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.TwitterPX + ' ' + socialShare.Buttons[0].Sprite.TwitterPY + '; cursor:pointer;"></a>';
+            }
+
+        }
+        //-------------------------  Twitter AlineaciÃ³n Horizontal -------------
+        if (socialShare.Buttons[0].Alineacion === "Horizontal") {
+            if (socialShare.Buttons[0].Servicios.Twitter === "Activado") {
+                if (socialShare.Buttons[0].Tamano === "countRight") {
+                    li.setAttribute("style", 'float: left; display:flex; width:80px; padding:0px;');
+                } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                    li.setAttribute("style", 'float: left; display:flex;');
+                } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                    li.setAttribute("style", 'float: left;  display:flex;');
+                } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                    li.setAttribute("style", 'float: left;  display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+                } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                    li.setAttribute("style", 'float: left;  display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+                }
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //----------------------  Twitter AlineaciÃ³n vertical ------------------                     
+        else if (socialShare.Buttons[0].Alineacion === "Vertical") {
+            if (socialShare.Buttons[0].Servicios.Twitter === "Activado") {
+                li.setAttribute("style", ' float:none; display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //-------------------- Twitter AlineaciÃ³n  Matrix 2X2   ----------------                  
+        else if (socialShare.Buttons[0].Alineacion === "Matrix22") {
+            if (socialShare.Buttons[0].Servicios.Twitter === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Twitter === "0" || socialShare.Buttons[0].Posicion.Twitter === "2" || socialShare.Buttons[0].Posicion.Twitter === "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Twitter !== "0" && socialShare.Buttons[0].Posicion.Twitter !== "2" && socialShare.Buttons[0].Posicion.Twitter !== "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //-------------------- Twitter AlineaciÃ³n  Matrix 2X3   ----------------
+        else if (socialShare.Buttons[0].Alineacion === "Matrix23") {
+            if (socialShare.Buttons[0].Servicios.Twitter === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Twitter !== "3") {
+
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+
+                }
+                if (socialShare.Buttons[0].Posicion.Twitter === "3") {
+
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //------------------------ Twitter AlineaciÃ³n  Matrix 3X2   ------------             
+        else if (socialShare.Buttons[0].Alineacion === "Matrix32") {
+            if (socialShare.Buttons[0].Servicios.Twitter === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Twitter === "0" || socialShare.Buttons[0].Posicion.Twitter === "2" || socialShare.Buttons[0].Posicion.Twitter === "4" || socialShare.Buttons[0].Posicion.Twitter === "5") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Twitter === "1" && socialShare.Buttons[0].Posicion.Twitter === "3") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //----------------------------------------------------------------------  
+
+        window.addEventListener("load", communities.getSeparation(), true);
+        var ul = document.getElementById("socialShare");
+        ul.setAttribute("style", 'list-style: none;');
+        //var element = document.getElementById("socialShare");
+        ul.appendChild(li);
+
+    },
+    //--------------------------- TwitterLoad --------------------------------------                    
+
+    TwitterLoad: function () {
+        ! function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, "script", "twitter-wjs");
+    },
+
+    //---------------------------- insertPinterest ---------------------------------
+    insertPinterest: function () {
+        var li = document.createElement("li");
+        li.setAttribute("id", '2');
+
+
+        if (socialShare.Buttons[0].Tamano === "countRight") {
+            li.innerHTML = '<a href="//es.pinterest.com/pin/create/button/?url=' + communities.getUrlVars() + '" data-pin-do="buttonPin" data-pin-config="beside"  data-pin-zero="true"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>';
+            //<link rel="image_src" href="http://i2.esmas.com/2014/06/30/666377/silvia-navarro-jorge-salinas-120x90.jpg" />
+        } else if (socialShare.Buttons[0].Tamano === "countTop") {
+            li.innerHTML = '<a href="//es.pinterest.com/pin/create/button/?url=' + communities.getUrlVars() + '" data-pin-do="buttonPin" data-pin-config="above"   data-pin-zero="true"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>';
+        } else if (socialShare.Buttons[0].Tamano === "countNone") {
+            li.innerHTML = '<a href="//pinterest.com/pin/create/link/?url=' + communities.getUrlVars() + '" data-pin-do="buttonPin" data-pin-config="none"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>';
+        }
+        //------------------- countPersonal --------------------      
+        else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="//es.pinterest.com/pin/create/link/?url=' + communities.getUrlVars() + '" target="_blank" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -111px -5px; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpP();" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -111px -5px; cursor:pointer;"></a>';
+            }
+        }
+        //------------------- tipoCanal5 -----------------------      
+        else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="//es.pinterest.com/pin/create/link/?url=' + communities.getUrlVars() + '" target="_blank" style="width: ' + socialShare.Buttons[0].Sprite.EscalaW + '; height: ' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.PinterestPX + ' ' + socialShare.Buttons[0].Sprite.PinterestPY + '; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpP();" style="width: ' + socialShare.Buttons[0].Sprite.EscalaW + '; height: ' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.PinterestPX + ' ' + socialShare.Buttons[0].Sprite.PinterestPY + '; cursor:pointer;"></a>';
+            }
+        }
+        //---------------------  Pinterest AlineaciÃ³n Horizontal ---------------
+        if (socialShare.Buttons[0].Alineacion === "Horizontal") {
+            //                  li.setAttribute("style",' float:left; ');
+            //elem.style.float = "left"; 
+            if (socialShare.Buttons[0].Servicios.Pinterest === "Activado") {
+
+                if (socialShare.Buttons[0].Tamano === "countRight") {
+                    li.setAttribute("style", 'float: left; display:flex; width:63px');
+                } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                    li.setAttribute("style", 'float: left; display:flex;');
+                } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                    li.setAttribute("style", 'float: left; display:flex; position:relative; top:30px;');
+                } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                    li.setAttribute("style", 'float: left; display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+                } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                    li.setAttribute("style", 'float: left; display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //------------------------ Pinterest AlineaciÃ³n vertical ---------------
+        else if (socialShare.Buttons[0].Alineacion === "Vertical") {
+            if (socialShare.Buttons[0].Servicios.Pinterest === "Activado") {
+                if (socialShare.Buttons[0].Tamano === "countRight") {
+                    li.setAttribute("style", ' float:none; position:relative;');
+                } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                    li.setAttribute("style", ' float:none; position:relative;');
+                } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                    li.setAttribute("style", ' float:none; position:relative; top:30px;');
+                } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                    li.setAttribute("style", ' float:none; display:flex; position:relative; padding:' + socialShare.Buttons[0].Separacion + ';');
+                } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                    li.setAttribute("style", ' float:none; display:flex;position:relative; padding:' + socialShare.Buttons[0].Separacion + ';');
+                }
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //--------------------------  Pinterest AlineaciÃ³n  Matrix 2X2   -------                        
+        else if (socialShare.Buttons[0].Alineacion === "Matrix22") {
+            if (socialShare.Buttons[0].Servicios.Pinterest === "Activado") {
+
+                if (socialShare.Buttons[0].Posicion.Pinterest === "0" || socialShare.Buttons[0].Posicion.Pinterest === "2" || socialShare.Buttons[0].Posicion.Pinterest === "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Pinterest !== "0" && socialShare.Buttons[0].Posicion.Pinterest !== "2" && socialShare.Buttons[0].Posicion.Pinterest !== "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //------------------------- Pinterest AlineaciÃ³n  Matrix 2X3   ---------                      
+        else if (socialShare.Buttons[0].Alineacion === "Matrix23") {
+
+            if (socialShare.Buttons[0].Servicios.Pinterest === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Pinterest === "2") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; position:relative; top:40px; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Pinterest !== "2") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left;  position:relative; top:40px; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //------------------------- Pinterest AlineaciÃ³n  Matrix 3X2   ---------                     
+        else if (socialShare.Buttons[0].Alineacion === "Matrix32") {
+            if (socialShare.Buttons[0].Servicios.Pinterest === "Activado") {
+
+                if (socialShare.Buttons[0].Posicion.Pinterest === "0" || socialShare.Buttons[0].Posicion.Pinterest === "2" || socialShare.Buttons[0].Posicion.Pinterest === "4" || socialShare.Buttons[0].Posicion.Pinterest === "5") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; width:80px; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; position:relative; top:30px; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Pinterest === "1" && socialShare.Buttons[0].Posicion.Pinterest === "3") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none;');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+
+        //----------------------------------------------------------------------            
+        window.addEventListener("load", communities.getSeparation(), true);
+        var ul = document.getElementById("socialShare");
+        ul.setAttribute("style", 'list-style: none;');
+        //var element = document.getElementById("socialShare");
+        ul.appendChild(li);
+    },
+    //---------------------------- PinterestLoad -----------------------------------            
+    loadJsPinterest: function () {
+        window.___gcfg = {
+            lang: 'es_ES'
+        };
+        // window.___gcfg = {lang: 'en_US'};
+        (function() {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = '//assets.pinterest.com/js/pinit.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })();
+    },
+
+   
+    //------------------------------ Google() --------------------------------------
+    insertGoogle: function insertGoogle() {
+        var li = document.createElement("li");
+        li.setAttribute("id", '4');
+
+
+        if (socialShare.Buttons[0].Tamano === "countRight") {
+            li.innerHTML = ' <div class="g-plus" data-action="share" data-annotation="bubble" data-height="24"></div>';
+        }
+        if (socialShare.Buttons[0].Tamano === "countTop") {
+            //li.setAttribute("style",' position:relative; top:30px;');
+            li.innerHTML = ' <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-height="60"></div>';
+        }
+        if (socialShare.Buttons[0].Tamano === "countNone") {
+            li.innerHTML = ' <div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>';
+        }
+        //------------------- google countPersonal -------------
+        if (socialShare.Buttons[0].Tamano === "countPersonal") {
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="https://plus.google.com/share?url=' + communities.getUrlVars() + '" target="_blank" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -217px -5px; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpG();" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -217px -5px; cursor:pointer;"></a>';
+            }
+        }
+        //------------------- google tipoCanal5 ----------------
+        if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="https://plus.google.com/share?url=' + communities.getUrlVars() + '" target="_blank" style="width: ' + socialShare.Buttons[0].Sprite.EscalaW + '; height: ' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.GmasPX + ' ' + socialShare.Buttons[0].Sprite.GmasPY + '; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpG();" style="width: ' + socialShare.Buttons[0].Sprite.EscalaW + '; height: ' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.GmasPX + ' ' + socialShare.Buttons[0].Sprite.GmasPY + '; cursor:pointer;"></a>';
+            }
+        }
+        //--------------------------- google AlineaciÃ³n Horizontal -------------
+        if (socialShare.Buttons[0].Alineacion === "Horizontal") {
+            if (socialShare.Buttons[0].Servicios.GoogleMas === "Activado") {
+                li.setAttribute("style", 'float: left; display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //--------------------------- google AlineaciÃ³n Vertical ---------------                       
+        else if (socialShare.Buttons[0].Alineacion === "Vertical") {
+
+            if (socialShare.Buttons[0].Servicios.GoogleMas === "Activado") {
+
+                if (socialShare.Buttons[0].Tamano === "countRight") {
+                    li.setAttribute("style", ' float:none; position:relative;');
+                } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                    li.setAttribute("style", ' float:none; position:relative;');
+                } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                    li.setAttribute("style", ' float:none; position:relative; top:30px;');
+                } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                    li.setAttribute("style", ' float:none; display:flex; position:relative; padding:' + socialShare.Buttons[0].Separacion + ';');
+                } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                    li.setAttribute("style", ' float:none; display:flex; position:relative; padding:' + socialShare.Buttons[0].Separacion + ';');
+                }
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //---------------------------- google AlineaciÃ³n  Matrix 2X2   ---------                   
+        else if (socialShare.Buttons[0].Alineacion === "Matrix22") {
+            if (socialShare.Buttons[0].Servicios.GoogleMas === "Activado") {
+                if (socialShare.Buttons[0].Posicion.GoogleMas === "0" || socialShare.Buttons[0].Posicion.GoogleMas === "2" || socialShare.Buttons[0].Posicion.GoogleMas === "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + '; ');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + '; ');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + '; ');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + '; ');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + '; ');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.GoogleMas !== "0" && socialShare.Buttons[0].Posicion.GoogleMas !== "2" && socialShare.Buttons[0].Posicion.GoogleMas !== "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "TipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //---------------------------- google AlineaciÃ³n  Matrix 2X3   ---------                
+        else if (socialShare.Buttons[0].Alineacion === "Matrix23") {
+            if (socialShare.Buttons[0].Servicios.GoogleMas === "Activado") {
+                if (socialShare.Buttons[0].Posicion.GoogleMas !== "3") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; position:relative; top:40px; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.GoogleMas === "3") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; position:relative; top:0px; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //---------------------------- google AlineaciÃ³n  Matrix 3X2   ---------                
+        else if (socialShare.Buttons[0].Alineacion === "Matrix32") {
+            if (socialShare.Buttons[0].Servicios.GoogleMas === "Activado") {
+                if (socialShare.Buttons[0].Posicion.GoogleMas === "0" || socialShare.Buttons[0].Posicion.GoogleMas === "2" || socialShare.Buttons[0].Posicion.GoogleMas === "4" || socialShare.Buttons[0].Posicion.GoogleMas === "5") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.GoogleMas === "1" && socialShare.Buttons[0].Posicion.GoogleMas !== "3") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "TipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //----------------------------------------------------------------------         
+
+        window.addEventListener("load", communities.getSeparation(), true);
+        var ul = document.getElementById("socialShare");
+        ul.setAttribute("style", 'list-style: none; ');
+        //var element = document.getElementById("socialShare");
+        ul.appendChild(li);
+    },
+
+    loadJsGoogle: function () {
+        window.___gcfg = {
+            lang: 'es'
+        };
+        (function() {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })();
+    },
+    //------------------------------ Email() --------------------------------------
+    insertMail: function () {
+        var li = document.createElement("li");
+        li.setAttribute("id", '5');
+
+        if (socialShare.Buttons[0].Tamano === "countRight") {
+            li.innerHTML = '<a href="mailto:?Subject=Simple Share Buttons&Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://www.simplesharebuttons.com"><img src="img/btn_imprimir.jpg" alt="Email" /></a>';
+        }
+        if (socialShare.Buttons[0].Tamano === "countTop") {
+            //li.innerHTML=' ';
+        }
+        if (socialShare.Buttons[0].Tamano === "countNone") {
+            li.innerHTML = '<a href="mailto:?Subject=Simple Share Buttons&Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://www.simplesharebuttons.com"><img src="img/btn_imprimir.jpg" alt="Email" /></a>';
+        }
+        //------------------- email countPersonal -----------------------                
+        if (socialShare.Buttons[0].Tamano === "countPersonal") {
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="mailto:?Subject=Simple Share Buttons&Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://www.simplesharebuttons.com" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -270px -5px; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpE();" style="width:48px; height:48px; background: url(img/sprite02.jpg) no-repeat -270px -5px; cursor:pointer;"></a>';
+            }
+        }
+        //------------------ email tipoCanal5 --------------------------                
+        if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+            if (socialShare.Buttons[0].Personal.showPopUp === "Desactivado") {
+                li.innerHTML = '<a href="mailto:?Subject=Simple Share Buttons&Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://www.simplesharebuttons.com" style="width: ' + socialShare.Buttons[0].Sprite.EscalaW + '; height: ' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.EmailPX + ' ' + socialShare.Buttons[0].Sprite.EmailPY + '; cursor:pointer;"></a>';
+            } else if (socialShare.Buttons[0].Personal.showPopUp === "Activado") {
+                li.innerHTML = '<a target="popup" onclick="communities.getpopUpE();" style="width: ' + socialShare.Buttons[0].Sprite.EscalaW + '; height: ' + socialShare.Buttons[0].Sprite.EscalaH + '; background: url(' + socialShare.Buttons[0].Sprite.href + ') no-repeat ' + socialShare.Buttons[0].Sprite.EmailPX + ' ' + socialShare.Buttons[0].Sprite.EmailPY + '; cursor:pointer;"></a>';
+            }
+        }
+        //--------------------------- email AlineaciÃ³n Horizontal ----------------------
+        if (socialShare.Buttons[0].Alineacion === "Horizontal") {
+            if (socialShare.Buttons[0].Servicios.Email === "Activado") {
+                li.setAttribute("style", 'float: left; display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //--------------------------- email AlineaciÃ³n Vertical ------------------------                        
+        else if (socialShare.Buttons[0].Alineacion === "Vertical") {
+            if (socialShare.Buttons[0].Servicios.Email === "Activado") {
+                li.setAttribute("style", 'float:none; display:flex; padding:' + socialShare.Buttons[0].Separacion + ';');
+            } else {
+                li.setAttribute("style", 'display:none;');
+            }
+        }
+        //---------------------------- email AlineaciÃ³n  Matrix 2X2   ------------------                    
+        else if (socialShare.Buttons[0].Alineacion === "Matrix22") {
+            if (socialShare.Buttons[0].Servicios.Email === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Email === "0" || socialShare.Buttons[0].Posicion.Email === "2" || socialShare.Buttons[0].Posicion.Email === "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Email !== "0" || socialShare.Buttons[0].Posicion.Email !== "2" && socialShare.Buttons[0].Posicion.Email !== "4") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //---------------------------- email AlineaciÃ³n  Matrix 2X3   ------------------              
+        else if (socialShare.Buttons[0].Alineacion === "Matrix23") {
+            if (socialShare.Buttons[0].Servicios.Email === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Email !== "2") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+
+                }
+                if (socialShare.Buttons[0].Posicion.Email === "2") {
+
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //---------------------------- email AlineaciÃ³n  Matrix 3X2   ------------------                
+        else if (socialShare.Buttons[0].Alineacion === "Matrix32") {
+            if (socialShare.Buttons[0].Servicios.Email === "Activado") {
+                if (socialShare.Buttons[0].Posicion.Email === "0" || socialShare.Buttons[0].Posicion.Email === "2" || socialShare.Buttons[0].Posicion.Email === "4" || socialShare.Buttons[0].Posicion.Email === "5") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:left; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:left; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+                if (socialShare.Buttons[0].Posicion.Email === "1" && socialShare.Buttons[0].Posicion.Email === "3") {
+                    if (socialShare.Buttons[0].Tamano === "countRight") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countNone") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countTop") {
+                        li.setAttribute("style", ' float:none; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "countPersonal") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    } else if (socialShare.Buttons[0].Tamano === "tipoCanal5") {
+                        li.setAttribute("style", ' float:none; display:flex; padding-left:' + socialShare.Buttons[0].SeparacionX + '; padding-top:' + socialShare.Buttons[0].SeparacionY + ';');
+                    }
+                }
+
+            } else {
+                li.setAttribute("style", 'display:none; ');
+            }
+        }
+        //------------------------------------------------------------------------------         
+
+        window.addEventListener("load", communities.getSeparation(), true);
+        var ul = document.getElementById("socialShare");
+        ul.setAttribute("style", 'list-style: none; ');
+        //var element = document.getElementById("socialShare");
+        ul.appendChild(li);
+    },
+
+
+
+    init:function (){
+
+//-------------------------ActivaciÃ³n de Facebook------------------------------- 
+        setTimeout(communities.insertFacebook(), socialShare.Buttons[0].Posicion.Facebook);
+        if(socialShare.Buttons[0].Tamano !== "countPersonal"){
+                communities.FacebookLoad();
+            }
+    //-------------------------ActivaciÃ³n de Twitter--------------------------------
+        setTimeout(communities.insertTwitter(), socialShare.Buttons[0].Posicion.Twitter);
+        if(socialShare.Buttons[0].Tamano !== "countPersonal"){
+                communities.TwitterLoad();
+            }
+    //-------------------------ActivaciÃ³n de Pinterest------------------------------ 
+        setTimeout(communities.insertPinterest(), socialShare.Buttons[0].Posicion.Pinterest);
+        if(socialShare.Buttons[0].Tamano !== "countPersonal"){
+                communities.PinterestLoad();
+           } 
+    //-------------------------ActivaciÃ³n de Linkedin------------------------------- 
+        setTimeout(communities.insertLinkedin(), socialShare.Buttons[0].Posicion.Linkedin);
+        if(socialShare.Buttons[0].Tamano !== "countPersonal"){
+                communities.LinkedinLoad();
+           }  
+    //-------------------------ActivaciÃ³n de GoogleMas------------------------------
+        setTimeout(communities.insertGoogle(), socialShare.Buttons[0].Posicion.GoogleMas); 
+        if(socialShare.Buttons[0].Tamano !== "countPersonal"){
+                communities.GoogleLoad();
+           }
+           
+    //-------------------------ActivaciÃ³n de GoogleMas------------------------------
+        setTimeout(communities.insertMail(), socialShare.Buttons[0].Posicion.Email); 
+
+    //-------------------------ActivaciÃ³n de SocialShare---------------------------- 
+//        socialShare(); 
+    
+} 
+
+    
+
+};
+
+communities.init();
+
+   </script>
+
+    </body>
+</html>
+
+
+
+
+
+
