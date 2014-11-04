@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/holita', 'ComplaintController@verHola');
+Route::get('/search', 'searchController@search');
 
 Route::get('/home', 'ComplaintController@action_index');
 
