@@ -3,7 +3,7 @@
 class AddUrlSitiesController extends BaseController {
 
     public function addUrlSities() { 
-        $urlSities = Complaint::all();
+        $urlSities = UrlSities::all();
         return View::make('home')->with('urlSities', $urlSities);
     }
 

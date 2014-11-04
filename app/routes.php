@@ -28,3 +28,5 @@ Route::post('/find/{complaint_id}', 'ComplaintController@destroy' );
 Route::post('/findId/{complaint_id}', 'ComplaintController@edit' );
 
 Route::post('/update/{complaint_id}', 'ComplaintController@update' );
+
+Route::get('/home', 'AddUrlSitiesController@addUrlSities' );
