@@ -26,7 +26,9 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('homestead'),
+	//'local' => array('homestead'),
+	'local' => array('Zurg.local','sfe-08641.esmas.net', 'televisadotcom.esmas.net','SFE08752', 'sfe-08752.esmas.net','sfe08676.esmas.net','is-08717.esmas.net', 'pc07.esmas.net', 'sfe-09836.esmas.net', 'sfe-08665.esmas.net', 'SFE08752','maq98.clase7.esmas.com.mx','cha-10638.esmas.net','Zurg-2.local','sfe-12864','Zurg-3.local','Estrategas_TI'),	
+	'staging' => array('dev-idtim','ip-10-252-9-7','ip-10-191-16-7'),
 
 ));
 
