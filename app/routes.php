@@ -11,6 +11,10 @@
 |
 */
 
+
+
+Route::post('/find', 'searchController@searchurl');
+
 Route::get('/search', 'searchController@search');
 
 Route::get('/home', 'ComplaintController@action_index');
