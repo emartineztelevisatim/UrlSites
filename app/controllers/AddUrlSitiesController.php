@@ -10,42 +10,57 @@ class AddUrlSitiesController extends BaseController {
     public function addNewUrl() { 
     if (Request::ajax())
         {
+//            $inputUrls = Input::get('inputUrls');
+//            $inputSities = Input::get('inputSities');
+//            $checkbox1 = Input::get('checkbox1');
+//            $checkbox2 = Input::get('checkbox2');
+//            $checkbox3 = Input::get('checkbox3');
+//            $inputPeriod = Input::get('inputPeriod');
+            
             $inputUrls = Input::get('inputUrls');
-            $inputSities = Input::get('inputSities');
-            $checkbox1 = Input::get('checkbox1');
-            $checkbox2 = Input::get('checkbox2');
-            $checkbox3 = Input::get('checkbox3');
-            $inputPeriod = Input::get('inputPeriod');
+            $contenido = Input::get('contenido');
             
-            if($checkbox1 == 'true'){
-               $checkbox1 = 'I'; 
-            }else{$checkbox1 = '';}
-            if($checkbox2 == 'true'){
-               $checkbox2 = 'N';
-            }else{$checkbox2 = '';}
-            if($checkbox3 == 'true'){
-               $checkbox3 = 'V';
-            }else{$checkbox3 = '';}  
+            $cadena = '';
+            foreach ($contenido as $value){
+                $cadena+=$value;
+            }
             
-            $checkbox =  $checkbox1.' '.$checkbox2.' '.$checkbox3;
+//            $period = Input::get('period');
+//            $sitesInclude = Input::get('sitesInclude');
+//            
+//            $sitesExclude = Input::get('sitesExclude');
             
-            $selectUrl = DB::table('url_sitios')
-                                    ->select('url')
-                                    ->where('url', '=',$inputUrls)->get();
+            //inputUrls=http%3A%2F%2Fnoticieros.televisa.com%2F&contenido%5B%5D=Notas&contenido%5B%5D=Videos&period=Mes&sitesInclude%5B%5D=futbol&sitesInclude%5B%5D=televisa&sitesExclude%5B%5D=futbol%2Fliga_mexicana
+            
+//            if($checkbox1 == 'true'){
+//               $checkbox1 = 'I'; 
+//            }else{$checkbox1 = '';}
+//            if($checkbox2 == 'true'){
+//               $checkbox2 = 'N';
+//            }else{$checkbox2 = '';}
+//            if($checkbox3 == 'true'){
+//               $checkbox3 = 'V';
+//            }else{$checkbox3 = '';}  
+            
+//            $checkbox =  $checkbox1.' '.$checkbox2.' '.$checkbox3;
+            
+//            $selectUrl = DB::table('url_sitios')
+//                                    ->select('url')
+//                                    ->where('url', '=',$inputUrls)->get();
             //Get vars $title , $startTime , $duration and $updated_at to insert in table FeedsProgramBackup
             //$searchUrl = $selectUrl[0]-> url;
             
-            if(isset($selectUrl) && $selectUrl == NULL ){
-                $type_url = '1';
-            }  else {
-                $type_url = '0';
-            }
+//            if(isset($selectUrl) && $selectUrl == NULL ){
+//                $type_url = '1';
+//            }  else {
+//                $type_url = '0';
+//            }
 
             
             $addNewUrl = DB::table('url_sitios')
-                      ->insert(array('url'=>$inputUrls,'type_url'=>$type_url,'sities'=>$inputSities,'type_info'=>$checkbox, 'startDate'=>date("Y-m-d", strtotime($inputPeriod))));
+                      ->insert(array('url'=>$inputUrls,'sities'=>$cadena));
         
-              return $selectUrl;
+            return $cadena;
         }
     }
 

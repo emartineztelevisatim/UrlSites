@@ -11,8 +11,6 @@
 |
 */
 
-
-
 Route::post('/find', 'searchController@searchurl');
 
 Route::get('/search', 'searchController@search');
@@ -36,6 +34,8 @@ Route::post('/update/{complaint_id}', 'ComplaintController@update' );
 Route::get('/home', 'AddUrlSitiesController@addUrlSities');
 
 Route::get('/home/addNewUrl','AddUrlSitiesController@addNewUrl');
+
+Route::get('/json', 'jsonController@json');
 
 
 
