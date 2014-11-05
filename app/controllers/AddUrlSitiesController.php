@@ -6,6 +6,36 @@ class AddUrlSitiesController extends BaseController {
         $urlSities = UrlSities::all();
         return View::make('home')->with('urlSities', $urlSities);
     }
+    
+    public function addNewUrl() { 
+    if (Request::ajax())
+        {
+            $inputUrls = Input::get('inputUrls');
+            $inputSities = Input::get('inputSities');
+            $checkbox1 = Input::get('checkbox1');
+            $checkbox2 = Input::get('checkbox2');
+            $checkbox3 = Input::get('checkbox3');
+            $inputPeriod = Input::get('inputPeriod');
+            
+            if($checkbox1 == 'on'){
+               $checkbox1 = 'I'; 
+            }
+            if($checkbox2 == 'on'){
+               $checkbox2 = 'N';
+            }
+            if($checkbox3 == 'on'){
+               $checkbox3 = 'V';
+            }            
+            
+            if($checkbox1 | $checkbox2 | $checkbox3){
+                $checkbox =  $checkbox1.' '.$checkbox2.' '.$checkbox3;
+            }
+            
+            $addNewUrl = DB::table('url_sitios')
+                      ->insert(array('url'=>$inputUrls,'sities'=>$inputSities,'type_info'=>$checkbox, 'startDate'=>date("Y-m-d", strtotime($inputPeriod))));
+        
+        }
+    }
 
 //    public function destroy($complaint_id) {
 //
