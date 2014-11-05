@@ -17,19 +17,19 @@ class AddUrlSitiesController extends BaseController {
             $checkbox3 = Input::get('checkbox3');
             $inputPeriod = Input::get('inputPeriod');
             
-            if($checkbox1 == 'on'){
+            if($checkbox1 == 'true'){
                $checkbox1 = 'I'; 
-            }
-            if($checkbox2 == 'on'){
+            }else{$checkbox1 = '';}
+            if($checkbox2 == 'true'){
                $checkbox2 = 'N';
-            }
-            if($checkbox3 == 'on'){
+            }else{$checkbox2 = '';}
+            if($checkbox3 == 'true'){
                $checkbox3 = 'V';
-            }            
+            }else{$checkbox3 = '';}  
             
-            if($checkbox1 | $checkbox2 | $checkbox3){
-                $checkbox =  $checkbox1.' '.$checkbox2.' '.$checkbox3;
-            }
+            $checkbox =  $checkbox1.' '.$checkbox2.' '.$checkbox3;
+            
+
             
             $addNewUrl = DB::table('url_sitios')
                       ->insert(array('url'=>$inputUrls,'sities'=>$inputSities,'type_info'=>$checkbox, 'startDate'=>date("Y-m-d", strtotime($inputPeriod))));
