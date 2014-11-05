@@ -35,6 +35,8 @@ Route::post('/update/{complaint_id}', 'ComplaintController@update' );
 
 Route::get('/home', 'AddUrlSitiesController@addUrlSities');
 
+Route::get('/home/addNewUrl','AddUrlSitiesController@addNewUrl');
+
 
 
 /* Login configuration */

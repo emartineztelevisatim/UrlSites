@@ -6,6 +6,48 @@ class AddUrlSitiesController extends BaseController {
         $urlSities = UrlSities::all();
         return View::make('home')->with('urlSities', $urlSities);
     }
+    
+    public function addNewUrl() { 
+    if (Request::ajax())
+        {
+            $inputUrls = Input::get('inputUrls');
+            $inputSities = Input::get('inputSities');
+            $checkbox1 = Input::get('checkbox1');
+            $checkbox2 = Input::get('checkbox2');
+            $checkbox3 = Input::get('checkbox3');
+            $inputPeriod = Input::get('inputPeriod');
+            
+            if($checkbox1 == 'true'){
+               $checkbox1 = 'I'; 
+            }else{$checkbox1 = '';}
+            if($checkbox2 == 'true'){
+               $checkbox2 = 'N';
+            }else{$checkbox2 = '';}
+            if($checkbox3 == 'true'){
+               $checkbox3 = 'V';
+            }else{$checkbox3 = '';}  
+            
+            $checkbox =  $checkbox1.' '.$checkbox2.' '.$checkbox3;
+            
+            $selectUrl = DB::table('url_sitios')
+                                    ->select('url')
+                                    ->where('url', '=',$inputUrls)->get();
+            //Get vars $title , $startTime , $duration and $updated_at to insert in table FeedsProgramBackup
+            //$searchUrl = $selectUrl[0]-> url;
+            
+            if(isset($selectUrl) && $selectUrl == NULL ){
+                $type_url = '1';
+            }  else {
+                $type_url = '0';
+            }
+
+            
+            $addNewUrl = DB::table('url_sitios')
+                      ->insert(array('url'=>$inputUrls,'type_url'=>$type_url,'sities'=>$inputSities,'type_info'=>$checkbox, 'startDate'=>date("Y-m-d", strtotime($inputPeriod))));
+        
+              return $selectUrl;
+        }
+    }
 
 //    public function destroy($complaint_id) {
 //
