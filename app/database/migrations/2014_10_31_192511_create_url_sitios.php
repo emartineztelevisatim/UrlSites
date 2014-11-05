@@ -22,6 +22,7 @@ class CreateUrlSitios extends Migration {
                $table->integer('type_url');
                $table->date('startDate');
                $table->string('type_info');
+               $table->string('sities');
                $table->timestamps();
            });
 	}
