@@ -29,11 +29,23 @@ class AddUrlSitiesController extends BaseController {
             
             $checkbox =  $checkbox1.' '.$checkbox2.' '.$checkbox3;
             
+            $selectUrl = DB::table('url_sitios')
+                                    ->select('url')
+                                    ->where('url', '=',$inputUrls)->get();
+            //Get vars $title , $startTime , $duration and $updated_at to insert in table FeedsProgramBackup
+            //$searchUrl = $selectUrl[0]-> url;
+            
+            if(isset($selectUrl) && $selectUrl == NULL ){
+                $type_url = '1';
+            }  else {
+                $type_url = '0';
+            }
 
             
             $addNewUrl = DB::table('url_sitios')
-                      ->insert(array('url'=>$inputUrls,'sities'=>$inputSities,'type_info'=>$checkbox, 'startDate'=>date("Y-m-d", strtotime($inputPeriod))));
+                      ->insert(array('url'=>$inputUrls,'type_url'=>$type_url,'sities'=>$inputSities,'type_info'=>$checkbox, 'startDate'=>date("Y-m-d", strtotime($inputPeriod))));
         
+              return $selectUrl;
         }
     }
 
