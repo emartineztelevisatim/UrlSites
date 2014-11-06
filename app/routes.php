@@ -97,12 +97,9 @@ Route::get('social/{action?}', array("as" => "hybridauth", function($action = ""
 	}
 }));  /* social/{action?} */
 
-Route::get('login',function(){
-	return View::make('urlSites.login');
+Route::get('welcome',function(){
+	return View::make('urlSites.urlSites');
 });
 
-Route::get('prueba',function(){
-	return View::make('urlSites.prueba');
-});
-
+Route::controller('urlSite','urlSiteController');
 

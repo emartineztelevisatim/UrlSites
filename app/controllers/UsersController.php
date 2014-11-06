@@ -66,7 +66,8 @@ class UsersController extends BaseController {
                             return Redirect::back()->withErrors(array('msg'=>'Group was not assigned'));
                     }
                     
-                return  View::make('urlSites.prueba');
+                return  View::make('urlSites.urlSites');
+                
                 
             }
             catch (Cartalyst\Sentry\Users\LoginRequiredException $e){
