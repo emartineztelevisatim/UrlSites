@@ -10,26 +10,44 @@ class AddUrlSitiesController extends BaseController {
     public function addNewUrl() { 
     if (Request::ajax())
         {
-//            $inputUrls = Input::get('inputUrls');
-//            $inputSities = Input::get('inputSities');
-//            $checkbox1 = Input::get('checkbox1');
-//            $checkbox2 = Input::get('checkbox2');
-//            $checkbox3 = Input::get('checkbox3');
-//            $inputPeriod = Input::get('inputPeriod');
+//          $inputUrls = Input::get('inputUrls');
+//          $inputSities = Input::get('inputSities');
+//          $checkbox1 = Input::get('checkbox1');
+//          $checkbox2 = Input::get('checkbox2');
+//          $checkbox3 = Input::get('checkbox3');
+//          $inputPeriod = Input::get('inputPeriod');
             
             $inputUrls = Input::get('inputUrls');
             $contenido = Input::get('contenido');
             
-            $cadena = '';
+            $inputContenido = '';
             foreach ($contenido as $value){
-                $cadena+=$value;
+                $inputContenido += $value;
+                
             }
             
 //            $period = Input::get('period');
-//            $sitesInclude = Input::get('sitesInclude');
 //            
-//            $sitesExclude = Input::get('sitesExclude');
+            $sitesInclude = Input::get('sitesInclude');
+            $sitesIncludeList = explode( ',', $sitesInclude );
+            $inputSitiesInclude ='';
+            foreach ($sitesIncludeList as $value){
+                $inputSitiesInclude += $value;
+            }
+//            
+            $sitesExclude = Input::get('sitesExclude');
+            $sitesExcludeList = explode(',',$sitesExclude);
+            $inputSitiesExclude = '';
+            foreach ($sitesExcludeList as $value){
+                $inputSitiesExclude += $value;
+            }
+
+            $addNewUrl = DB::table('url_sitios')
+                       ->insert(array('url'=>$inputUrls,'sities'=>$inputContenido,''));
+        
+            return $cadena;
             
+
             //inputUrls=http%3A%2F%2Fnoticieros.televisa.com%2F&contenido%5B%5D=Notas&contenido%5B%5D=Videos&period=Mes&sitesInclude%5B%5D=futbol&sitesInclude%5B%5D=televisa&sitesExclude%5B%5D=futbol%2Fliga_mexicana
             
 //            if($checkbox1 == 'true'){
@@ -57,10 +75,7 @@ class AddUrlSitiesController extends BaseController {
 //            }
 
             
-            $addNewUrl = DB::table('url_sitios')
-                      ->insert(array('url'=>$inputUrls,'sities'=>$cadena));
-        
-            return $cadena;
+
         }
     }
 
