@@ -53,8 +53,12 @@
 
                                                     <legend class="section">Elements</legend>                                                 
                                                        <div class=" col-sm-10">
-                                                               
-                                                        </div>
+                                                             <select name="numElement" class='chzn-select select-block-level' id='numElement'>
+									                                @for ($i=0; $i <=20 ; $i++)
+									                                	<option value='{{$i}}'>{{$i}}</option>
+									                                @endfor
+                   											</select>     
+                                                       </div>
 
                                                     <legend class="section">Incluir</legend>                                                
                                                         <div class="input-group col-sm-10">
@@ -65,18 +69,9 @@
                                                                 </button>
                                                             </span>
                                                         </div>
-                                                
-                                                    <div class='body'>
-														<table id='formInclude' class="table table-striped no-margin sources-table">
-																<thead>
-																	<tr>
-																	<th>Include Url</th>
-																	</tr>
-																</thead>
-															
-															
-														</table>
-													</div>
+                                                <!--   **************  -->
+                                                    <div id='formInclude'></div>
+
                                                     <legend class="section">Excluir</legend>
                                                         <div class="input-group col-sm-10">
                                                             <input id='inputSitiesExclude'  class="form-control" placeholder="Sites">
@@ -86,19 +81,8 @@
                                                                 </button>
                                                             </span>
                                                         </div>
-                                                  
-                                                    <div class='body'>
-
-														<table id='formExclude' class="table table-striped no-margin sources-table">
-																<thead>
-																	<tr>
-																		<th>Exclude Url</th>
-																	</tr>
-																</thead>
-															
-															
-														</table>
-													</div>     
+                                                  <!--   **************  -->
+                                                    <div id='formExclude'></div>     
                                                 </div>
                                             </div>
                                         </div>
@@ -156,16 +140,6 @@
 
         <script type="text/javascript">
 
-/*var inputUrls = $('#inputUrls').val(),
-	period = $("#period").val(),
-	arrayContent = [];
-
-	$("input[type=checkbox]:checked").each(function() {
-	        arrayContent.push($(this).val());
-	 });
-	arrayContent.toString();
-*/
-
 $(".iCheck").iCheck({
             checkboxClass: 'icheckbox_square-grey',
             radioClass: 'iradio_square-grey'
@@ -180,17 +154,13 @@ $('#addUrlSiteInclude').on('click',function() {
 	var inputSitiesInclude = $('#inputSitiesInclude').val();
 
 	if(inputSitiesInclude){
-		$("#formInclude > thead").append($("<tr>")
-									.append($("<td>")
-										.append($("<input>",{value:inputSitiesInclude,name:'sitesInclude[]',text:inputSitiesInclude}))));
+		$("#formInclude").append($("<ul>")
+							.append($("<li>",{value:inputSitiesInclude,text:inputSitiesInclude})));
 		
 		$("#inputSitiesInclude").val('');
 	}
-
-		
-
-
 });
+
 
 $('#addUrlSiteExclude').on('click',function() {  
 
@@ -198,19 +168,35 @@ $('#addUrlSiteExclude').on('click',function() {
 
 		if(inputSitiesExclude){
 
-			$("#formExclude > thead").append($("<tr>")
-									.append($("<td>").addClass("col-sm-10")
-										.append($("<input>",{value:inputSitiesExclude,name:'sitesExclude[]',text:inputSitiesExclude}))));
+			$("#formExclude").append($("<ul>")
+								.append($("<li>",{value:inputSitiesExclude,text:inputSitiesExclude})));
 
 			$("#inputSitiesExclude").val('');
 		}	
 });
 
+
 $("#saveUrl").on('click',function(){
-	console.log($("#formGen").serialize())
+
+	var formGen = $("#formGen").serialize(),
+		dataInclude = [],
+		dataExclude = [];
+
+		$('#formInclude ul li').each(function(i)
+		{
+			dataInclude.push($(this).attr('value'));
+		});
+
+		$('#formExclude ul li').each(function(i)
+		{
+			dataExclude.push($(this).attr('value'));
+		});
+
+		var dataGenUrl = formGen + "&dataInclude=" + dataInclude + "&dataExclude=" +dataExclude;
+
+		console.log(dataGenUrl)
+
 });
-
-
 
 
 </script>
