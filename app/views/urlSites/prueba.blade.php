@@ -116,7 +116,7 @@
 @section('scripts')
 
  @parent
-		{{ HTML::script('/light-blue/lib/bootstrap-datepicker.js') }}
+        {{ HTML::script('/light-blue/lib/bootstrap-datepicker.js') }}
         {{ HTML::script('js/formAccountNewUpd.js') }} 
         {{ HTML::script('light-blue/lib/icheck.js/jquery.icheck.js') }}
         <!--<script src="/js/timepicki.js"></script> -->
@@ -155,7 +155,7 @@ $('#addUrlSiteInclude').on('click',function() {
 
 	if(inputSitiesInclude){
 		$("#formInclude").append($("<ul>")
-							.append($("<li>",{value:inputSitiesInclude,text:inputSitiesInclude})));
+                                 .append($("<li>",{value:inputSitiesInclude,text:inputSitiesInclude})));
 		
 		$("#inputSitiesInclude").val('');
 	}
@@ -166,13 +166,13 @@ $('#addUrlSiteExclude').on('click',function() {
 
 	var inputSitiesExclude = $('#inputSitiesExclude').val();
 
-		if(inputSitiesExclude){
+        if(inputSitiesExclude){
 
-			$("#formExclude").append($("<ul>")
-								.append($("<li>",{value:inputSitiesExclude,text:inputSitiesExclude})));
+                $("#formExclude").append($("<ul>")
+                                 .append($("<li>",{value:inputSitiesExclude,text:inputSitiesExclude})));
 
-			$("#inputSitiesExclude").val('');
-		}	
+                $("#inputSitiesExclude").val('');
+        }	
 });
 
 

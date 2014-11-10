@@ -15,7 +15,7 @@ Route::post('/find', 'searchController@searchurl');
 
 Route::get('/search', 'searchController@search');
 
-Route::get('/home', 'ComplaintController@action_index');
+
 
 Route::post('/complaints/{complaint_id}', 'ComplaintController@destroy' );
 
@@ -31,12 +31,57 @@ Route::post('/findId/{complaint_id}', 'ComplaintController@edit' );
 
 Route::post('/update/{complaint_id}', 'ComplaintController@update' );
 
-Route::get('/home', 'AddUrlSitiesController@addUrlSities');
+//Route::get('/home', 'AddUrlSitiesController@addUrlEditor');
 
 Route::get('/home/addNewUrl','AddUrlSitiesController@addNewUrl');
 
+Route::get('/urlSite','AddUrlSitiesController@addUrlSities');
+
 Route::get('/json', 'jsonController@json');
 
+Route::get('/home/editorUrlSities','AddUrlSitiesController@editorUrlSities');
+
+
+Route::get('/urlSites/editorUrlSities','AddUrlSitiesController@editorUrlSities');
+
+
+Route::get('/urlSites',function(){
+
+	return View::make('urlSites.urlSites');
+});
+
+Route::get('/formAddUrlUpdate',function(){
+
+	return View::make('urlSites.formAddUrlUpdate');
+});
+
+Route::get('/formAddUrlAdd',function(){
+
+	return View::make('urlSites.formAddUrlAdd');
+});
+
+Route::get('/home', 'AddUrlSitiesController@action_index');
+
+//Route::get('home',function(){
+//    
+//    
+//	return View::make('urlSites.home');
+//});
+
+Route::get('urlSites',function(){
+    
+    $urlSities = UrlSities::all();
+    $urlInclude = urlInclude::all();
+    $urlExclude = urlExclude::all();
+        
+    return View::make('urlSites.urlSites',array('urlSities'=>$urlSities,'urlInclude'=>$urlInclude,'urlExclude'=>$urlExclude)); 
+});
+
+//Route::get('urlSites',function(){
+//    
+//    
+//	return View::make('urlSites.addUrl');
+//});
 
 
 /* Login configuration */
@@ -97,9 +142,13 @@ Route::get('social/{action?}', array("as" => "hybridauth", function($action = ""
 	}
 }));  /* social/{action?} */
 
-Route::get('welcome',function(){
-	return View::make('urlSites.urlSites');
-});
+//Route::get('welcome',function(){
+//    
+//    
+//	return View::make('urlSites.urlSites');
+//});
+
+
 
 Route::controller('urlSite','urlSiteController');
 

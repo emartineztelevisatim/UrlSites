@@ -1,217 +1,1 @@
-@extends('urlSites.main')
-    @section('content')
-<br><br>
-<br>
-
-<div class="row"> 
-    	<div id="editorfeeds" class="col-md-8">
-    <section class="widget">
-        <header><h4><i class="fa fa-pencil"></i>  Editor </h4></header>
-        <div class="body">
-
-            <form method="get" id='formGen' class="form-horizontal" action="#">
-                <fieldset>
-                    <div class="row">
-                        <div class="col-sm-12">                        
-                            <div class="form-group">
-                                <div class="col-md-12 col-md-offset-0">
-                                    <section class="widget">
-                                        <div class="body no-margin">
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-
-                                                    <legend class="section">Name Site</legend>
-                                                        <div class="input-group col-sm-10">
-                                                            <input id='inputUrls' class="form-control" placeholder="Urls" name='inputUrls'>
-                                                        </div>
-
-
-                                                    <legend class="section">Content Type</legend>
-                                                        <div class="control-group checkboxAlign">
-                                                                <label class="checkbox">
-                                                                    <input type="checkbox" name="contenido[]" class="iCheck contentCheck" value='Imagenes'> Imagenes
-                                                                </label>
-                                                                <label class="checkbox">
-                                                                    <input type="checkbox" name="contenido[]" class="iCheck contentCheck" value='Notas'> Notas
-                                                                </label>
-                                                                <label class="checkbox">
-                                                                    <input type="checkbox" name="contenido[]" class="iCheck contentCheck" value='Videos'> Videos
-                                                                </label>
-                                                        </div>
-                                                    
-                                                   	
-                                                    <legend class="section">Period</legend>                                                 
-                                                        <div class=" col-sm-10">
-                                                                <select name="period"  class='chzn-select select-block-level' id='period'>
-									                                <option value="">............</option>
-									                                <option value='Hora'>Hora</option>
-                                                                	<option value='Dia'>Dia</option>
-                                                                	<option value='Semana'>Semana</option>
-                                                                	<option value='Mes'>Mes</option>
-                   												</select>   
-                                                        </div>
-
-                                                    <legend class="section">Elements</legend>                                                 
-                                                       <div class=" col-sm-10">
-                                                             <select name="numElement" class='chzn-select select-block-level' id='numElement'>
-									                                @for ($i=0; $i <=20 ; $i++)
-									                                	<option value='{{$i}}'>{{$i}}</option>
-									                                @endfor
-                   											</select>     
-                                                       </div>
-
-                                                    <legend class="section">Incluir</legend>                                                
-                                                        <div class="input-group col-sm-10">
-                                                            <input id='inputSitiesInclude'  class="form-control" placeholder="Sites">
-                                                            <span class="input-group-btn">
-                                                                <button type='button' class="btn btn-primary" id='addUrlSiteInclude'>
-                                                                    Add
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                <!--   **************  -->
-                                                    <div id='formInclude'></div>
-
-                                                    <legend class="section">Excluir</legend>
-                                                        <div class="input-group col-sm-10">
-                                                            <input id='inputSitiesExclude'  class="form-control" placeholder="Sites">
-                                                            <span class="input-group-btn">
-                                                                <button type='button' class="btn btn-primary" id='addUrlSiteExclude'>
-                                                                    Add
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                  <!--   **************  -->
-                                                    <div id='formExclude'></div>     
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>                             
-                            </div>
-                        </div>
-                    </div>    
-                </fieldset>
-            </form>
-
-            			<div class="well well-sm well-white">
-                            <div class="row">
-                                <div class="col-xs-5 col-sm-offset-5">
-                                    <button type="button" class="btn btn-primary btn-sm" data-placement="top" id='saveUrl'>
-                                        Save
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-        </div>
-    </section>
-</div>  
-
-</div>
-
-
-@stop
-
-
-@section('scripts')
-
- @parent
-		{{ HTML::script('/light-blue/lib/bootstrap-datepicker.js') }}
-        {{ HTML::script('js/formAccountNewUpd.js') }} 
-        {{ HTML::script('light-blue/lib/icheck.js/jquery.icheck.js') }}
-        <!--<script src="/js/timepicki.js"></script> -->
-
-<script src="/light-blue/lib/select2.js"></script>
-<script src="/light-blue/lib/bootstrap/collapse.js"></script>
-<script src="/light-blue/lib/bootstrap/transition.js"></script>
-<script src="/light-blue/lib/bootstrap/button.js"></script>
-<script src="/light-blue/lib/bootstrap-select/bootstrap-select.js"></script>
-
-
-
-<style type="text/css">
-	table th,td{padding: .5em;}
-	select{color:black;}
-	.checkboxAlign label{float: left;padding-left: 4em;}
-	td input{color:black;}
-
-
-</style>
-
-        <script type="text/javascript">
-
-$(".iCheck").iCheck({
-            checkboxClass: 'icheckbox_square-grey',
-            radioClass: 'iradio_square-grey'
-});
-
-$(".chzn-select").each(function(){
-            $(this).select2($(this).data());
-});  
-
-$('#addUrlSiteInclude').on('click',function() {  
-
-	var inputSitiesInclude = $('#inputSitiesInclude').val();
-
-	if(inputSitiesInclude){
-		$("#formInclude").append($("<ul>")
-							.append($("<li>",{value:inputSitiesInclude,text:inputSitiesInclude})));
-		
-		$("#inputSitiesInclude").val('');
-	}
-});
-
-
-$('#addUrlSiteExclude').on('click',function() {  
-
-	var inputSitiesExclude = $('#inputSitiesExclude').val();
-
-		if(inputSitiesExclude){
-
-			$("#formExclude").append($("<ul>")
-								.append($("<li>",{value:inputSitiesExclude,text:inputSitiesExclude})));
-
-			$("#inputSitiesExclude").val('');
-		}	
-});
-
-
-$("#saveUrl").on('click',function(){
-
-	var formGen = $("#formGen").serialize(),
-		dataInclude = [],
-		dataExclude = [];
-
-		$('#formInclude ul li').each(function(i)
-		{
-			dataInclude[i] = $(this).attr('value');
-			//dataInclude.push($(this).attr('value'));
-		});
-
-		$('#formExclude ul li').each(function(i)
-		{
-			dataExclude[i] = $(this).attr('value');
-		});
-
-		var dataGenUrl = formGen + "&dataInclude=" + dataInclude + "&dataExclude=" +dataExclude;
-
-
-		$.ajax({
-                    url: '/urlSite/otro',
-                    type: 'POST',
-                    data: dataGenUrl,
-                    dataType: 'JSON',
-                    success: function(data) { 
-
-                          console.log(data)
-                          alert("Guardado")
-                          
-                    }//fin success
-        })//fin ajax
-
-});
-
-
-</script>
-@stop
-
+<!DOCTYPE html><html lang="es">    <head>                <title></title><!--    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">-->        <link href="/light-blue/css/application.css" rel="stylesheet"><!--    <link rel="stylesheet" href="css/tinyscrollbar.css" type="text/css" media="screen"/>-->        <link rel="stylesheet" href="css/timepicki.css" type="text/css" media="screen"/>        <link rel="stylesheet" href="http://jquery.bassistance.de/validate/demo/site-demos.css">        <style type="text/css">	table th,td{padding: .5em;}	select{color:black;}	.checkboxAlign label{float: left;padding-left: 4em;}	td input{color:black;}        </style>                       <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>        {{ HTML::script('/light-blue/lib/bootstrap-datepicker.js') }}        <script src="/light-blue/lib/sparkline/jquery.sparkline.js"></script>        <script src="/light-blue/lib/jquery-ui-1.10.3.custom.js"></script>        <script src="/light-blue/lib/jquery.slimscroll.js"></script>          {{ HTML::script('js/formAccountNewUpd.js') }}         <script src="/js/timepicki.js"></script>     </head>        <body>            <style>        .logo {                position: relative;                text-align: left;                margin: 0 auto;                width: 955px;                background: #F00;                height: 82px;                background: transparent url(../img/logoTelevisa.png) left top no-repeat;                 overflow: hidden;        }                  body{              background: transparent url(light-blue/img/Dark-Blue-Background.jpg) left top no-repeat;          }    </style>        <div class="container">    <div class="logo">    <h4><i style="background: url(http://i2.esmas.com/hf/header/img/sprite_logo.svg) 4px center no-repeat;    background-size: 200px;height: 25px; width: 50px;" class="fa"></i><a href="/"> <strong>Url Sities</strong></a></h4></div>                 <div class="row">  <!--|-------------------------------------------------------------------------------| Editor of Video Clips|-------------------------------------------------------------------------------|-->    <div id="editorfeeds" class="col-md-3">        <section class="widget">            <header><h4><i class="fa fa-pencil"></i> Url Sities</h4></header>                        <div class="body">                <form method="get" id='formGen' class="form-horizontal" action="#">                    <fieldset>                        <div class="row">                            <div class="col-sm-12">                                                        <div class="form-group">                                    <div class="col-md-12 col-md-offset-0">                                        <section class="widget">                                            <div class="body no-margin">                                                <div class="row">                                                    <div class="col-md-10 col-md-offset-1">                                                        <legend class="section">Name Site</legend>                                                            <div class="input-group col-sm-12">                                                                <input id='inputUrls' class="form-control" placeholder="Urls" name='inputUrls'>                                                            </div>                                                        <legend class="section">Content Type</legend>                                                            <div class="control-group checkboxAlign">                                                                    <label class="checkbox">                                                                        <input id="checkbox1" type="checkbox" name="contenido[]" class="iCheck contentCheck" value='Imagenes'> Imagenes                                                                    </label>                                                                    <label class="checkbox">                                                                        <input id="checkbox2" type="checkbox" name="contenido[]" class="iCheck contentCheck" value='Notas'> Notas                                                                    </label>                                                                    <label class="checkbox">                                                                        <input id="checkbox3" type="checkbox" name="contenido[]" class="iCheck contentCheck" value='Videos'> Videos                                                                    </label>                                                            </div>                                                        <legend class="section">Period</legend>                                                                                                             <div class=" col-sm-12">                                                                    <select name="period"  class='chzn-select select-block-level' id='period'>                                                                                                            <option value="">............</option>                                                                                                            <option value='Hora'>Hora</option>                                                                            <option value='Dia'>Dia</option>                                                                            <option value='Semana'>Semana</option>                                                                            <option value='Mes'>Mes</option>                                                                                                                    </select>                                                               </div>                                                        <legend class="section">Elements</legend>                                                                                                            <div class=" col-sm-12">                                                                 <select name="numElement" class='chzn-select select-block-level' id='numElement'>                                                                                                            @for ($i=0; $i <=20 ; $i++)                                                                                                                    <option value='{{$i}}'>{{$i}}</option>                                                                                                            @endfor                                                                                                            </select>                                                                </div>                                                        <legend class="section">Incluir</legend>                                                                                                            <div class="input-group col-sm-12">                                                                <input id='inputSitiesInclude'  class="form-control" placeholder="Sites">                                                                <span class="input-group-btn">                                                                    <button type='button' class="btn btn-primary" id='addUrlSiteInclude'>                                                                        Add                                                                    </button>                                                                </span>                                                            </div>                                                    <!--   **************  -->                                                        <div id='formInclude'></div>                                                        <legend class="section">Excluir</legend>                                                            <div class="input-group col-sm-12">                                                                <input id='inputSitiesExclude'  class="form-control" placeholder="Sites">                                                                <span class="input-group-btn">                                                                    <button type='button' class="btn btn-primary" id='addUrlSiteExclude'>                                                                        Add                                                                    </button>                                                                </span>                                                            </div>                                                      <!--   **************  -->                                                        <div id='formExclude'></div>                                                         </div>                                                </div>                                            </div>                                        </section>                                    </div>                                                             </div>                            </div>                        </div>                        </fieldset>                </form>                <div class="well well-sm well-white">                    <div class="row">                        <div class="col-xs-5 col-sm-offset-2">                            <button type="button" class="btn btn-primary btn-sm" data-placement="top" id='saveUrl'>                                Save                            </button>                        </div>                    </div>                </div>            </div>        </section>    </div>  <!--|-------------------------------------------------------------------------------| Escaleta Items Show All Feeds|-------------------------------------------------------------------------------|--><div class="content container">    <div class="row">        <div class="col-md-9">            <section class="widget">                <header>                    <h4><i class="fa fa-list-ol"></i>Varius content</h4>                </header>                                <div id="body" class="body">                                        <table class="table table-striped table-images">                                                <thead>                            <tr>                                <th style="text-align:center;"><small><strong>id_url</strong></small></th>                                <th style="text-align:center;"><small><strong>nameUrl</strong></small></th>                                <th style="text-align:center;"><small><strong>content_type</strong></small></th>                                <th style="text-align:center;"><small><strong>period</strong></small></th>                                <th style="text-align:center;"><small><strong>numElements</strong></small></th>                                <th style="text-align:center;"><small><strong>created_by</strong></small></th>                                <th style="text-align:center;"><small><strong>modified_by</strong></small></th>                            </tr>                        </thead>                        <tbody>                            @foreach($urlSities as $key => $value)                            <tr  id="{{$value->id_url}}" style="text-align:center;">                                <td>{{ $value->id_url}}</td>                                <td>{{ $value->nameUrl}}</td>                                <td>{{ $value->content_type}}</td>                                <td>{{ $value->period}}</td>                                <td>{{ $value->numElements}}</td>                                <td>{{ $value->created_at}}</td>                                <td>{{ $value->updated_at}}</td>                                <td><button id ="editarButton" class="btn btn-sm btn-primary">Editar</button></td>                            </tr>                            @endforeach                                                    </tbody>                                            </table>                                        <div class="clearfix">                        <div class="pull-right">                            <button class="btn btn-default btn-sm">Guardar JSON</button>                            <button id="addNewUrl" class="btn btn-default btn-sm">Agregar Nuevo</button>                            <div class="btn-group">                                <button class="btn btn-sm btn-inverse dropdown-toggle" data-toggle="dropdown">Limpiar<i class="fa fa-caret-down"></i></button>                                <ul class="dropdown-menu">                                    <li><a href="#">Clear</a></li>                                    <li><a href="#">Move ...</a></li>                                    <li><a href="#">Something else here</a></li>                                    <li class="divider"></li>                                    <li><a href="#">Separated link</a></li>                                </ul>                            </div>                        </div>                        <ul class="pagination no-margin">                            <li class="disabled"><a href="#">Prev</a></li>                            <li class="active"><a href="#">1</a></li>                            <li><a href="#">2</a></li><!--                            <li><a href="#">3</a></li>                            <li><a href="#">4</a></li>-->                            <li><a href="#">Next</a></li>                        </ul>                    </div>                </div>            </section>        </div>    </div></div> </div>    </body></html><script src="/light-blue/lib/select2.js"></script><script src="/light-blue/lib/bootstrap/collapse.js"></script><script src="/light-blue/lib/bootstrap/transition.js"></script><script src="/light-blue/lib/bootstrap/button.js"></script><script src="/light-blue/lib/bootstrap-select/bootstrap-select.js"></script><style type="text/css">	table th,td{padding: .5em;}	select{color:black;}	.checkboxAlign label{float: left;padding-left: 4em;}	td input{color:black;}</style><script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script><script type="text/javascript">    $('#addNewUrl').click(function() {    window.location.href = "/home";});         $('#inputUrls').keyup(function(){        this.value = this.value.toLowerCase();        avoid = "http://";    this.value = this.value.split(avoid).join('');   });    $('#saveUrl').click(function() {        var txt = $('#inputUrls').val();        var re = /(http(s)?:\\)?([\w-]+\.)+[\w-]+[.com|.in|.org]+(\[\?%&=]*)?/;        if (re.test(txt)) {            alert('Url Valida');        }        else {            alert('Por favor Ingresa una Url valida');        return false;        }  });      /*|-------------------------------------------------------------------------------| Variables Globales|-------------------------------------------------------------------------------|*/   /*|-------------------------------------------------------------------------------| escaleta/displayCounterFeeds|-------------------------------------------------------------------------------|*/ var id_url;    $('#body tr').on('click',function(){        id_url = this.id;                alert(id_url);        $.ajax({                url: '/home/editorUrlSities',                type: 'get',                data: {'id_url':id_url},                success: function(data) {                            if(data){                                       // alert(data.id_url);                                                                                $("#inputUrls").val(data.nameUrl);                                        $('#period').val(data.period);                                        $('#numElement').val(data.numElements);                                                                                //$('#inputSitiesInclude').val(data.urlInclude);                                                                                var inputSitiesInclude = data.urlInclude;//                                        for ( var i = 0; i < inputSitiesInclude; i = i + 1 ) {                                            alert(inputSitiesInclude);                                        $("#formInclude").append($('<ul>')                                                         .append($('<li>',{value:inputSitiesInclude,text:inputSitiesInclude})))//                                             }                                        $("#inputSitiesInclude").val('');                                                                  //                                        $('#inputSitiesExclude').val(data.urlExclude);                                                                                var inputSitiesExclude = data.urlExclude;                                                                                $("#formExclude").append($("<ul>")                                                         .append($("<li>",{value:inputSitiesExclude,text:inputSitiesExclude})));                                                                      $("#inputSitiesExclude").val('');                                        var str0 = data.content_type;                                        var str1 = "Imagenes";                                        var str2 = "Notas";                                        var str3 = "Videos";                                        if(str0.indexOf(str1) != -1 ){                                            $('#checkbox1').prop('checked','1');}                                        if(str0.indexOf(str2) != -1){                                            $('#checkbox2').prop('checked','1');}                                        if(str0.indexOf(str3) != -1){                                            $('#checkbox3').prop('checked','1');}                                }                        }            });});     $('#viewEditor').click(function() {   window.location.href = "/home"; });$('#inputUrls').keyup(function(){        this.value = this.value.toLowerCase();        avoid = "http://";    this.value = this.value.split(avoid).join('');          avoid1 = "https://";    this.value = this.value.split(avoid1).join('');  });    $('#saveUrl').click(function() {        var txt = $('#inputUrls').val();        var re = /(http(s)?:\\)?([\w-]+\.)+[\w-]+[.com|.in|.org]+(\[\?%&=]*)?/;        if (re.test(txt)) {            alert('Url Valida');        }        else {            alert('Por favor Ingresa una Url valida');        return false;        }  });            $('#inputSitiesInclude').keyup(function(){        this.value = this.value.toLowerCase();        avoid = "http://";    this.value = this.value.split(avoid).join('');   });  $('#inputSitiesExclude').keyup(function(){        this.value = this.value.toLowerCase();        avoid = "http://";    this.value = this.value.split(avoid).join('');   }); $(".iCheck").iCheck({            checkboxClass: 'icheckbox_square-grey',            radioClass: 'iradio_square-grey'});$(".chzn-select").each(function(){            $(this).select2($(this).data());});  var itemCount = 0;$('#addUrlSiteInclude').on('click',function() {      var inputSitiesInclude = $('#inputSitiesInclude').val();    if(inputSitiesInclude){               $("#formInclude").append($('<ul>')                         .append($('<li>',{id:itemCount,value:inputSitiesInclude,text:inputSitiesInclude})))                         .append($(''));        itemCount++;        $("#inputSitiesInclude").val('');                $('#formInclude ul li').on('click',function() {            var id = $(this).val();            $('#formInclude ul li').remove();            alert('Sitio Eliminado');        });            }});$('#addUrlSiteExclude').on('click',function() {      var inputSitiesExclude = $('#inputSitiesExclude').val();    if(inputSitiesExclude){        $("#formExclude").append($("<ul>")                         .append($("<li>",{value:inputSitiesExclude,text:inputSitiesExclude})));        $("#inputSitiesExclude").val('');                $('#formExclude ul li').on('click',function() {            var id = $(this).val();            $('#formExclude ul li').remove();            alert('Sitio Eliminado');        });            }	});alert(id_url);    var validUrls = $('#inputUrls').val();var validPeriod = $('#period').val();var validElement = $('#numElement').val();var validInclude = $('#inputSitiesInclude').val();var validExclude = $('#inputSitiesExclude').val();var validcheckbox1 = $('#checkbox1').is(':checked');var validcheckbox2 = $('#checkbox2').is(':checked');var validcheckbox3 = $('#checkbox3').is(':checked');$("#saveUrl").on('click',function(){//location.reload();    checkbox1 = $('#checkbox1').is(':checked');    checkbox2 = $('#checkbox2').is(':checked');    if( validUrls != '' |  validPeriod != '' | validElement != '0' |  validInclude != '' |  validExclude != '' | checkbox1 != false | checkbox2 != false){            var formGen = $("#formGen").serialize(),            dataInclude = [],            dataExclude = [];            $('#formInclude ul li').each(function(i)            {                    dataInclude[i] = $(this).attr('value');                    //dataInclude.push($(this).attr('value'));            });            $('#formExclude ul li').each(function(i)            {                    dataExclude[i] = $(this).attr('value');            });                                               alert(id_url);            var dataGenUrl = formGen + "&dataInclude=" + dataInclude + "&dataExclude=" + dataExclude + "&id_url=" + id_url;            $.ajax({                url: '/urlSite/update',                type: 'POST',                data: dataGenUrl,                dataType: 'JSON',                success: function(data) {                       console.log(data)                      alert("Guardado")                }//fin success            })//fin ajax      }else{        alert('Deben estar los parametros llenos')    }    });</script>

@@ -1,8 +1,7 @@
 @extends('urlSites.main')
     @section('content')
     <br><br><br>
-    <div class="row"></div>
-
+    <div class="row">@include('urlSites.mainUrlsitiesUpdate')</div>
 @stop
 
 @section('scripts')
@@ -19,10 +18,10 @@
         <script src="/light-blue/lib/bootstrap-select/bootstrap-select.js"></script>
 
         <style type="text/css">
-                table th,td{padding: .5em;}
-                select{color:black;}
-                .checkboxAlign label{float: left;padding-left: 4em;}
-                td input{color:black;}
+            table th,td{padding: .5em;}
+            select{color:black;}
+            .checkboxAlign label{float: left;padding-left: 4em;}
+            td input{color:black;}
         </style>
 @stop
 

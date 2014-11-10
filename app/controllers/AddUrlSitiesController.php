@@ -1,11 +1,82 @@
 <?php
 
 class AddUrlSitiesController extends BaseController {
+    
+        public function action_index() { 
+//        $complaints = Complaint::all();
+        return View::make('home');
+    }
+    
+    
 
+    public function addUrlEditor() { 
+        $urlSities = UrlSities::all();
+        $urlInclude = urlInclude::all();
+        $urlExclude = urlExclude::all();
+        
+        return View::make('home',array('as' => 'home', 'urlSities'=>$urlSities,'urlInclude'=>$urlInclude,'urlExclude'=>$urlExclude)); 
+    }
+    
+    
     public function addUrlSities() { 
         $urlSities = UrlSities::all();
-        return View::make('home')->with('urlSities', $urlSities);
+        $urlInclude = urlInclude::all();
+        $urlExclude = urlExclude::all();
+        
+        return View::make('urlSites.urlSites',array('urlSities'=>$urlSities,'urlInclude'=>$urlInclude,'urlExclude'=>$urlExclude)); 
     }
+    
+/* ---------------------- EditorUrlSities ---------------------------------- */         
+public function editorUrlSities(){
+    if (Request::ajax())
+        {
+            $id_url = Input::get("id_url");
+            
+            $editorUrlSities = DB::table('url_sitios')
+                                    ->select('id_url','nameUrl','content_type','period','numElements','created_by','modified_by')->get(); 
+
+//            $id_url = $editorUrlSities[0]-> id_url;
+            $nameUrl  = $editorUrlSities[0]-> nameUrl;
+            $content_type  = $editorUrlSities[0]-> content_type;
+            $period    = $editorUrlSities[0]-> period; 
+            $numElements =  $editorUrlSities[0]-> numElements;
+            $created_by = $editorUrlSities[0]-> created_by;
+            $modified_by = $editorUrlSities[0]-> modified_by;
+            
+            $editorUrlInclude = DB::table('urlInclude')
+                                    ->select('id_url','urlInclude')
+                                    ->where('id_url','=',$id_url)->get();
+            
+            $urlInclude = $editorUrlInclude[0] -> urlInclude; 
+
+            //$urlInclude = $editorUrlInclude-> urlInclude; 
+                        
+            $editorUrlExclude = DB::table('urlExclude')
+                                    ->select('id_url','urlExclude')
+                                    ->where('id_url','=',$id_url)->get();
+            $urlExclude = $editorUrlExclude[0]-> urlExclude; 
+            //return Redirect::back();
+            //Auth::editorUrlSities();
+            //return Redirect::to('homeUpdate');
+            //return Redirect::to('homeUpdate')->with(array('id_url'=>$id_url,'nameUrl'=>$nameUrl,'content_type'=>$content_type,'period'=>$period,'numElements'=>$numElements,'created_by'=>$created_by,'modified_by'=>$modified_by,'urlInclude'=>$urlInclude,'urlExclude'=>$urlExclude)); 
+            //return Redirect::route('home');
+            return Redirect::to('/formAddUrlUpdate')->with(array('nameUrl'=>$nameUrl)); 
+            //
+            ////return Redirect::intended('/');  
+            //return Redirect::back();
+            //return array('id_url'=>$id_url,'nameUrl'=>$nameUrl,'content_type'=>$content_type,'period'=>$period,'numElements'=>$numElements,'created_by'=>$created_by,'modified_by'=>$modified_by,'urlInclude'=>$urlInclude,'urlExclude'=>$urlExclude);
+            //return View::make('home')->with(array('id_url'=>$id_url,'nameUrl'=>$nameUrl,'content_type'=>$content_type,'period'=>$period,'numElements'=>$numElements,'created_by'=>$created_by,'modified_by'=>$modified_by,'urlInclude'=>$urlInclude,'urlExclude'=>$urlExclude));
+            //return View::make('urlSites.urlSites')->with(array('id_url'=>$id_url,'nameUrl'=>$nameUrl,'content_type'=>$content_type,'period'=>$period,'numElements'=>$numElements,'created_by'=>$created_by,'modified_by'=>$modified_by,'urlInclude'=>$urlInclude,'urlExclude'=>$urlExclude));
+            //Route::get('/urlSites', array('id_url'=>$id_url,'nameUrl'=>$nameUrl,'content_type'=>$content_type,'period'=>$period,'numElements'=>$numElements,'created_by'=>$created_by,'modified_by'=>$modified_by,'urlInclude'=>$urlInclude,'urlExclude'=>$urlExclude)); 
+            //return Redirect::route('urlSites.homeUpdate');
+            //URL::to('/urlSites');
+            }else {
+    // validation has failed, display error messages    
+    }
+        
+        
+}    
+
     
     public function addNewUrl() { 
     if (Request::ajax())

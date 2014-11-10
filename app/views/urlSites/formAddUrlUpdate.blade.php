@@ -1,7 +1,7 @@
 @extends('urlSites.main')
     @section('content')
     <br><br><br>
-    <div class="row"></div>
+    <div class="row">@include('urlSites.mainUrlsitiesUpdate')</div>
 
 @stop
 

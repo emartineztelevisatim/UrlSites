@@ -5,10 +5,10 @@ class ComplaintController extends BaseController {
     public function verHola() { 
     }
 
-    public function action_index() { 
-        $complaints = Complaint::all();
-        return View::make('home')->with('complaints', $complaints);
-    }
+//    public function action_index() { 
+//        $complaints = Complaint::all();
+//        return View::make('home')->with('complaints', $complaints);
+//    }
 
     public function destroy($complaint_id) {
 
